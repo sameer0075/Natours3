@@ -1,0 +1,301 @@
+
+// features section
+.feature-box{
+
+  background-color: rgba($color-white, .8);
+  font-size: 15px;
+  width: 250px;
+  padding: 25px;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 15px 40px rgba($color-black, .15);
+  transition: transform .3s;
+
+  &__icon{
+font-size: 60px;
+margin-bottom: 5px;
+display: inline-block;
+background-image: linear-gradient(to right,$primary-color,$primary-color2);//linear-gradient(to right,$color-primary-light,$color-primary-dark);
+-webkit-background-clip:text;
+color: transparent;
+  }
+
+  &:hover{
+    transform: translateY(-15px) scale(1.03);
+  }
+
+  &__text{
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+//Form section second last part(before footer)
+.form{
+  &__group{
+  &:not(:last-child){
+    margin-bottom: 20px;
+  }
+  }
+  &__input{
+    font-family: inherit;
+    color: inherit;
+    font-size: 15px;
+    padding: 15px 20px;
+    border-radius: 2px;
+    background-color: rgba($color-white,.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 90%;
+    display: block;
+    transition: all .3s;
+
+    &:focus{//focus is a pseudo class
+      outline: none; //we dont want its built in outline thats why outline:none;
+      box-shadow: 0 10px 20px rgba($color-black,.1);
+      border-bottom: 3px solid $primary-color;
+    }
+
+    &:focus:invalid{
+      border-bottom: 3px solid $color-secondary-dark;
+    }
+
+    &:focus:valid{
+      border-bottom: 3px solid $primary-color2;
+    }
+
+    &::-webkit-input-placeholder{//only works on safari and chrome and is used for styling placeholder
+      color:$color-grey-dark-2;
+
+    }
+  }
+
+
+
+
+
+  &__label{
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 7px;
+    display: block;
+   transition: all .3s;
+  }
+
+  &__input:placeholder-shown ~ &__label{//~ a sibling selector used to select sibbling of the same parent
+         opacity:0;
+         visibility: hidden;
+         transform: translateY(-40px);
+  }
+
+  &__radio-group{
+    width: 49%;
+    display: inline-block;
+  }
+
+  &__radio-input{//at the end we hide the original radio btn
+    display: none;
+  }
+
+  &__radio-label{
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 45px;
+  }
+
+  &__radio-button{
+    height: 30px;
+    width: 30px;
+    border: 5px solid $primary-color2;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -4px;
+
+    &::after{
+      content: "";
+      display: block;
+      height: 13px;
+      width: 13px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background-color: $primary-color2;
+      opacity: 0;
+      transition: opacity .2s;
+
+
+    }  
+  }
+
+  &__radio-input:checked ~ &__radio-label &__radio-button::after{//checked is a pseudo class used for all radio elements
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+//TOUR SECTION
+.card{
+  //Functionality
+  perspective: 1500px; //should be always on parent class
+  -moz-perspective: 1500px; //to work on mozilla firefox
+  position: relative;
+  height: 520px;
+  &__side{
+    height: 520px;
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    backface-visibility: hidden; //hides the backpart of an element when we set it to hidden
+    border-radius: 3px;
+    overflow: hidden; // the image on the card is over flowing thats why the corners are no longer rounded it is used to solve this problem
+    box-shadow: 0 15px 40px rgba($color-black, .15);
+    &--front{
+      background-color:$color-white;
+    }
+
+    &--back{
+      transform: rotateY(180deg);
+
+      &-1{
+        background-image: linear-gradient(to right, $color-secondary-light,$color-secondary-dark);
+      }
+
+      &-2{
+        background-image: linear-gradient(to right, $primary-color,$primary-color2);
+      }
+      &-3{
+        background-image: linear-gradient(to right, $color-tertiary-light,$color-tertiary-dark);
+      }
+    }
+  }
+
+  &:hover &__side--front{// &:hover &__side means when we hover the card we want side to transform(.card:hover .card__side)
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back{// &:hover &__side means when we hover the card we want side to transform(.card:hover .card__side)
+    transform: rotateY(0);
+  }
+
+
+  //Front side Styling
+  &__picture{
+    background-size: cover;
+    height: 230px;
+    background-blend-mode: screen;
+    -webkit-clip-path:polygon(0 0, 100% 0, 100% 85%, 0 100%);//it is used so that clip-path can be available in different browsers but place clip-path beneath it.
+    clip-path:polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    border-top-left-radius: 3px; //due to clip-path corners were not rounded so to round them
+    border-top-right-radius: 3px; //due to clip-path corners were not rounded so to round them
+    &--1{
+      background-image: linear-gradient(to right, $color-secondary-light,$color-secondary-dark),url(../img/nat-5.jpg);
+    }
+    &--2{
+      background-image: linear-gradient(to right, $primary-color,$primary-color2),url(../img/nat-5.jpg);
+    }
+    &--3{
+      background-image: linear-gradient(to right, $color-tertiary-light,$color-tertiary-dark),url(../img/nat-5.jpg);
+    }
+  }
+
+  &__heading{
+    font-size: 28px;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    color: $color-white;
+    position: absolute;
+    top: 120px;
+    right: 20px;
+    width: 75%;
+  }
+
+  &__heading-span{
+    &--1{
+      -webkit-box-decoration-break: clone; //box-decoration-break is not available in google chrome thats why we add webkit
+      box-decoration-break: clone;//the heading in card is treated as single elemet and thats why we want space before E and after A so it is used
+      padding: 10px 15px;
+      background-image: linear-gradient(to right bottom,rgba($color-secondary-light,.85),rgba($color-secondary-dark,.85));
+    }
+
+    &--2{
+      -webkit-box-decoration-break: clone; //box-decoration-break is not available in google chrome thats why we add webkit
+      box-decoration-break: clone;//the heading in card is treated as single elemet and thats why we want space before E and after A so it is used
+      padding: 10px 15px;
+      background-image: linear-gradient(to right bottom,rgba($primary-color,.85),rgba($primary-color2,.85));
+    }
+
+    &--3{
+      -webkit-box-decoration-break: clone; //box-decoration-break is not available in google chrome thats why we add webkit
+      box-decoration-break: clone;//the heading in card is treated as single elemet and thats why we want space before E and after A so it is used
+      padding: 10px 15px;
+      background-image: linear-gradient(to right bottom,rgba($color-tertiary-light,.85),rgba($color-tertiary-dark,.85));
+    }
+  }
+
+  &__details{
+    padding: 30px;
+    ul{
+      list-style: none;
+      width: 80%;
+      margin: 0 auto;
+
+      li{
+      text-align: center;
+      font-size: 15px;
+      padding: 10px;
+      &:not(:last-child){
+        border-bottom: 1px solid $color-grey-light-2;
+      }
+      }
+    }
+  }
+
+  //Back side Styling
+  &__cta{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    width: 90%;
+    text-align: center;
+  }
+
+  &__price-box{
+     text-align: center;
+     color: $color-white;
+     margin-bottom: 80px;
+  }
+
+  &__price-only{
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  &__price-value{
+    font-size: 60px;
+    font-weight: 100;
+  }
+}

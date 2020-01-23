@@ -1,0 +1,95 @@
+//Button code nested in text-box
+.btn,
+.btn:link,   /* pseudo classes visited means when btn is cliked*/
+.btn:visited{
+text-transform: uppercase;
+text-decoration: none;
+padding: 15px 40px;
+display: inline-block;
+border-radius: 100px; /* changes the edges of byn to round*/
+transition: all .2s;
+position: relative;
+font-size: 16px;
+
+// changes for button element
+border: none;
+cursor: pointer;
+
+}
+.btn:hover{
+transform: translateY(-3px); //when btn is cliked it is pushed downward
+box-shadow: 0 10px 20px rgba($color-black,.2); /*x=0 y=10px blur=20px rgba   (we pit x=0 bcoz we donot want shadow to pop from x-axis we want it to pop from y-axis)*/
+}
+.btn:active,
+.btn:focus{  /*when btn is clicked it is active state. It doesnot have relation with hover class it has relation with pseudo classes*/
+outline: none;
+transform: translateY(-1px);
+box-shadow: 0 5px 10px rgba($color-black,.2);  /*x=0 y=5px blur=10px rgba   (we pit x=0 bcoz we donot want shadow to pop from x-axis we want it to pop from y-axis)*/
+}
+
+.btn-white{
+background-color: $color-white;
+color: $color-grey-dark;
+}
+
+.btn--green{
+background-color: $primary-color;
+color: $color-white;
+
+&::after{
+  background-color: $primary-color;
+}
+}
+
+.btn::after{
+content: "";
+display: inline-block;
+height: 100%;
+width: 100%;
+border-radius: 100px;
+position: absolute;
+top: 0;
+left: 0;
+z-index: -1;
+transition: all .4s;
+}
+.btn-white::after{
+background-color: $color-white;
+}
+.btn:hover::after{
+transform: scaleX(1.4) scaleY(1.6);
+opacity: 0;
+}
+
+.btn-animated{
+animation: moveInBottom 0.5s ease-out 0.75s; /*name, animation duration ,animation-time-function, animation-delay*/
+animation-fill-mode: backwards;/*it applies the style 0 percent before the animation starts*/
+}
+
+
+
+
+.text-btn{
+  &:link,
+  &:visited{
+    font-size: $default-font-size;
+    color: $primary-color;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $primary-color;
+    padding: 3px;
+    transition: all .2s;
+  }
+
+  &:hover{
+ background-color: $primary-color2;
+ color: $color-white;
+ box-shadow: 0 10px 20px rgba($color-black, .15);
+ transform: translateY(-2px);
+  }
+
+  &:active{
+    box-shadow: 0 5px 10px rgba($color-black, .15);
+    transform: translateY(0);
+  }
+}

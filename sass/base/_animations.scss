@@ -1,0 +1,44 @@
+/* Two Types Of Animations
+1- using transition(easy one)
+2- using keyframes rule(complex one)
+*/
+
+@keyframes moveInLeft{/*for animation*/
+  0%{
+    opacity: 0;
+    transform: translateX(-100px); /*comes from -100px left(main heading)*/
+  }
+  80%{
+    transform: translateX(10px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0); /*original state of main heading*/
+  }
+}
+
+@keyframes moveInRight{/*for animation (sub heading)*/
+  0%{
+    opacity: 0;
+    transform: translateX(100px); /*comes from -100px left*/
+  }
+  80%{
+    transform: translateX(-10px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0); /*original state of sub heading*/
+  }
+}
+
+
+@keyframes moveInBottom{/*for animation (button)*/
+  0%{
+    opacity: 0;
+    transform: translateY(30px);
+}
+  100%{
+    opacity: 1;
+    transform: translate(0); /*original state of button*/
+  }
+}

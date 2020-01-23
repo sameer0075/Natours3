@@ -1,0 +1,135 @@
+.composition{
+position: relative;
+
+  &__photo{
+    width: 55%;
+    box-shadow: 0 15px 40px rgba($color-black, .4);
+    border-radius: 2px;
+   position: absolute;
+   z-index: 10;
+   transition: all .2s;
+   outline-offset: 20px; // space b/w outline(border) and element
+
+   &--p1{
+    left: 0;
+    top: -20px;
+   }
+
+   &--p2{
+     right: 0;
+     top: 20px;
+   }
+
+   &--p3{
+     left: 20%;
+     top: 100px;
+   }
+
+   &:hover{
+     outline: 15px solid $primary-color2;
+     transform: scale(1.05) translateY(-5px);
+     box-shadow: 0 25px 40px rgba($color-black, .4);
+     z-index: 20;
+   }
+
+  }
+
+&:hover &__photo:not(:hover) { //composition:hover composition__photo:not(:hover)
+    transform: scale(.9);
+
+  //means when we hover composition we come to composition__photo and that photo which is not hover
+   }
+}
+
+
+
+
+
+
+
+
+//story
+.story{
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 30px 60px rgba($color-black, .1);
+  background-color:rgba($color-white,.6);
+  border-radius: 3px;
+ padding: 60px;
+ padding-left: 90px;
+ font-size: 16px;
+ transform: skewX(-12deg);
+
+
+& > *{
+  transform: skewX(12deg);
+}
+
+&:not(:last-child){
+  margin-bottom: 85px;
+}
+
+ &__shape{
+   width: 150px;
+   height: 150px;
+   float: left; //float will only work if the dimension has a height and width
+   -webkit-shape-outside: circle(50% at 50% 50%);
+   shape-outside: circle(50% at 50% 50%); //defines where the content floats around the element
+   -webkit-clip-path:circle(50% at 50% 50%);
+   clip-path:circle(50% at 50% 50%);
+   transform: translateX(-30px) skewX(12deg);//to add space between circle and text
+   position: relative;
+ }
+
+ &__img{
+   height: 100%;
+   transform: translate(-40px) scale(1.4);
+   backface-visibility: hidden;
+   transition: all .5s;
+ }
+
+ &__text{
+   transform: skewX(12deg);
+ }
+
+&__caption{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,20%);
+  color: $color-white;
+  text-transform:uppercase;
+  font-size: 17px;
+  text-align: center;
+  opacity: 0;
+  transition: all .5s;
+  backface-visibility: hidden;
+}
+&:hover &__caption{
+  opacity:1;
+  transform: translate(-50%,-50%);
+}
+
+&:hover &__img{
+transform: translate(-40px) scale(1);
+filter: blur(3px) brightness(80%);;//many filters are available
+}
+
+}
+
+.bg-video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: .15;
+
+&__content{
+  height: 100%;
+  width: 100%;//these 3 lines will fit the vedio or cover to the parent element size
+  object-fit: cover; //similar to bg size cover
+}
+
+}
